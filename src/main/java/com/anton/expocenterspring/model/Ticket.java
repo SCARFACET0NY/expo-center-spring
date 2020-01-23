@@ -1,14 +1,14 @@
 package com.anton.expocenterspring.model;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "ticket")
 public class Ticket extends BaseEntity {
+    @Column(name = "date")
     private LocalDate date;
+    @Column(name = "quantity")
     private Integer quantity;
     @OneToOne
     private Exposition exposition;

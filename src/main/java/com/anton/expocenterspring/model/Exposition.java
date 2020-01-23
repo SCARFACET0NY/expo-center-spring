@@ -1,17 +1,22 @@
 package com.anton.expocenterspring.model;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "exposition")
 public class Exposition extends BaseEntity {
+    @Column(name = "title")
     private String title;
+    @Column(name = "description")
     private String description;
+    @Column(name = "price")
     private Double price;
+    @Column(name = "image_path")
     private String imagePath;
+    @Column(name = "start_date")
     private LocalDate startDate;
+    @Column(name = "end_date")
     private LocalDate endDate;
     @ManyToOne()
     @JoinColumn(name = "hall_id")

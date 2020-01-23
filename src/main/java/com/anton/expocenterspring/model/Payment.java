@@ -1,15 +1,15 @@
 package com.anton.expocenterspring.model;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
+@Table(name = "payment")
 public class Payment extends BaseEntity {
+    @Column(name = "total")
     private double total;
+    @Column(name = "payment_date")
     private LocalDateTime date;
     @ManyToOne
     @JoinColumn(name = "user_id")

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Expo Center</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Hall title</th>
+        <th>Area</th>
+        <th>Image Path</th>
+        <th>Type</th>
+    </tr>
+    <tr th:each="hall : ${halls}">
+        <td th:text="${hall.title}"></td>
+        <td th:text="${hall.area}"></td>
+        <td th:text="${hall.imagePath}"></td>
+        <td th:text="${hall.type}"></td>
+    </tr>
+</table>
+</body>
+</html>

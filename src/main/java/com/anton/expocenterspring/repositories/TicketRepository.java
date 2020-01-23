@@ -1,4 +1,4 @@
-package com.anton.expocenterspring.repository;
+package com.anton.expocenterspring.repositories;
 
 import com.anton.expocenterspring.model.Ticket;
 import org.springframework.data.repository.CrudRepository;

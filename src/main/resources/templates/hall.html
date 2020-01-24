@@ -11,7 +11,25 @@
 <body>
     <th:block th:include="header.html"></th:block>
     <th:block th:include="sub-header.html"></th:block>
-    <p th:each="exposition : ${expositions}" th:text="${exposition.title}"></p>
+    <div class="expositions">
+        <div class="container-fluid">
+            <h2 th:text="${hall.title}"></h2>
+            <div class="row">
+                <div class="col-md-4" th:each="exposition : ${expositions}">
+                    <div class="card">
+                        <img class="card-img-top" th:src="@{${exposition.imagePath}}">
+                        <div class="card-body">
+                            <h4 class="card-title" th:text="${exposition.title}"></h4>
+                            <p th:text="${exposition.description}"></p>
+                            <p th:text="${'Price: ' + exposition.price + 'uah'}"></p>
+                            <p th:text="${'Takes place: ' + exposition.startDate + ' - ' + exposition.endDate}"></p>
+                            <a class="btn btn-lg btn-info btn-block" href="/login">Buy Ticket</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <th:block th:include="footer.html"></th:block>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

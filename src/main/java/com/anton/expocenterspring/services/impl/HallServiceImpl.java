@@ -1,5 +1,6 @@
 package com.anton.expocenterspring.services.impl;
 
+import com.anton.expocenterspring.enums.HallType;
 import com.anton.expocenterspring.model.Hall;
 import com.anton.expocenterspring.repositories.HallRepository;
 import com.anton.expocenterspring.services.HallService;
@@ -22,4 +23,11 @@ public class HallServiceImpl implements HallService {
         hallRepository.findAll().forEach(halls::add);
         return halls;
     }
+
+    @Override
+    public Hall getHallByType(HallType type) {
+        return hallRepository.findHallByType(type);
+    }
+
+
 }

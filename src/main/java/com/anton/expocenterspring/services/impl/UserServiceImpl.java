@@ -6,7 +6,9 @@ import com.anton.expocenterspring.repositories.UserRepository;
 import com.anton.expocenterspring.services.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 

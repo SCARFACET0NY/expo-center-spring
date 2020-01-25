@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.LocalDate;
-
 @Controller
 public class HallController {
     private final HallService hallService;

@@ -23,6 +23,6 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("Can't find username: " + username);
         }
 
-        return new UserPrincipal(user);
+        return new UserPrincipal(user, user.getAccountStatus());
     }
 }

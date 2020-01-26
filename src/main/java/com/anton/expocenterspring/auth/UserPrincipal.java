@@ -1,5 +1,6 @@
 package com.anton.expocenterspring.auth;
 
+import com.anton.expocenterspring.enums.AccountStatus;
 import com.anton.expocenterspring.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -7,12 +8,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserPrincipal implements UserDetails {
     private User user;
+    private AccountStatus role;
 
-    public UserPrincipal(User user) {
+    public UserPrincipal(User user, AccountStatus role) {
         this.user = user;
+        this.role = role;
     }
 
     public User getUser() {
@@ -25,7 +30,14 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("CUSTOMER"));
+        if (role == null) {
+            return Collections.emptySet();
+        }
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        grantedAuthorities.add(new SimpleGrantedAuthority(role.toString()));
+
+
+        return grantedAuthorities;
     }
 
     @Override

@@ -1,4 +1,4 @@
-<header>
+<header xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <div class="dropdown">
             <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">en</button>
@@ -9,11 +9,16 @@
             </div>
         </div>
         <div class="logo">
-            <a href="/" class="nav-link text-light">
+            <a class="nav-link text-light" href="/">
                 <img src="img/center_icon_64.png"/>
                 <span>Expo Center</span>
             </a>
         </div>
-        <a type="button" class="btn btn-light btn-lg" href="/login">Login</a>
+        <div sec:authorize="isAnonymous()">
+            <a type="button" class="btn btn-light btn-lg" href="/login">Login</a>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <a type="button" class="btn btn-light btn-lg" href="/logout">Logout</a>
+        </div>
     </nav>
 </header>

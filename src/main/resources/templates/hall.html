@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" type="text/css" th:href="@{css/normalize.css}"/>
@@ -23,7 +23,10 @@
                             <p th:text="${exposition.description}"></p>
                             <p th:text="${'Price: ' + exposition.price + 'uah'}"></p>
                             <p th:text="${'Takes place: ' + exposition.startDate + ' - ' + exposition.endDate}"></p>
-                            <a class="btn btn-lg btn-info btn-block" href="/login">Buy Ticket</a>
+                            <a class="btn btn-lg btn-info btn-block" th:href="@{/addTicket}"
+                                                                    sec:authorize="isAuthenticated()">Buy Ticket</a>
+                            <a class="btn btn-lg btn-info btn-block" th:href="@{/login}"
+                                                                    sec:authorize="isAnonymous()">Buy Ticket</a>
                         </div>
                     </div>
                 </div>

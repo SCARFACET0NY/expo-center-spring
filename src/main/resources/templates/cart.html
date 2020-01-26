@@ -1,0 +1,63 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/normalize.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{css/main.css}"/>
+    <title>Expo Center</title>
+</head>
+<body>
+    <div class="container cart">
+        <h2 class="cart-header">Tickets</h2>
+
+        <table class="table table-hover">
+            <tr class="bg-info text-dark">
+                <th>title</th>
+                <th>date</th>
+                <th>price</th>
+                <th>quantity</th>
+                <th>action</th>
+            </tr>
+            <tr class="bg-dark text-light">
+                <td>Exposition 1</td>
+                <td>
+                    <form th:action="@{/setDate}" method="post">
+                        <input type="hidden" name="exposition_id" value="">
+                        <input type="date" name="ticket_date" value="2020-01-26"
+                               min="2020-01-26"
+                               max="2020-01-31">
+                        <button type="submit" class="btn btn-info date">set</button>
+                    </form>
+                </td>
+                <td id="price">99.99</td>
+                <td>
+                    <form th:action="@{/setQuantity}" method="post">
+                        <input type="hidden" name="exposition_id" value="">
+                        <input name="sign" type="submit" value="-" class="btn btn-info rounded-circle sign">
+                        <span>1</span>
+                        <input name="sign" type="submit" value="+" class="btn btn-info rounded-circle sign">
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/removeTicket}" method="post">
+                        <input type="hidden" name="exposition_id" value="${item.exposition.id}">
+                        <button type="submit" class="btn btn-info">remove</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <p class="total">Total: 99.99</p>
+
+        <form th:action="@{pay}" method="post">
+            <button type="submit" class="btn btn-lg btn-info btn-block">Pay</button>
+        </form>
+
+        <a class="btn btn-lg btn-dark btn-block home" th:href="@{/}">Home</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

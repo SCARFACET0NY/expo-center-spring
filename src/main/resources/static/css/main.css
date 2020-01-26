@@ -104,11 +104,11 @@ h2 {
     margin-bottom: 0;
 }
 
-.login, .register {
+.login, .register, .error {
     margin-top: 2em;
 }
 
-.login .btn, .register .btn {
+.login .btn, .register .btn, .error .btn {
     font-weight: bold;
     font-size: 20px;
 }
@@ -176,4 +176,9 @@ footer .logo span {
     position: relative;
     bottom: 4px;
     left: 5px;
+}
+
+.alert {
+    font-size: 22px;
+    text-align: center;
 }

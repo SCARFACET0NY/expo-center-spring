@@ -1,6 +1,8 @@
 package com.anton.expocenterspring.controllers;
 
 import com.anton.expocenterspring.dto.TicketDto;
+import com.anton.expocenterspring.model.Exposition;
+import com.anton.expocenterspring.model.Ticket;
 import com.anton.expocenterspring.services.TicketService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,6 +55,27 @@ public class CartController {
         }
 
         session.setAttribute("cart", cart);
+
+        return "redirect:cart";
+    }
+
+    @PostMapping("/setQuantity")
+    public String setTicketQuantity(@RequestParam("exposition_id") String id, @RequestParam String sign,
+                                    HttpSession session) {
+        Map<String, TicketDto> cart = (Map<String, TicketDto>) session.getAttribute("cart");
+        if (cart.containsKey(id)) {
+            Ticket ticket = cart.get(id).getTicket();
+            Exposition exposition = cart.get(id).getExposition();
+            if (sign.equals("+")) {
+                ticket.setQuantity(ticket.getQuantity() + 1);
+                session.setAttribute("total", (double) session.getAttribute("total") + exposition.getPrice());
+            } else if (sign.equals("-")) {
+                if (ticket.getQuantity() > 1) {
+                    ticket.setQuantity(ticket.getQuantity() - 1);
+                    session.setAttribute("total", (double) session.getAttribute("total") - exposition.getPrice());
+                }
+            }
+        }
 
         return "redirect:cart";
     }

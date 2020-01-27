@@ -23,8 +23,10 @@
                             <p th:text="${exposition.description}"></p>
                             <p th:text="${'Price: ' + exposition.price + 'uah'}"></p>
                             <p th:text="${'Takes place: ' + exposition.startDate + ' - ' + exposition.endDate}"></p>
-                            <a class="btn btn-lg btn-info btn-block" th:href="@{/addTicket}"
-                                                                    sec:authorize="isAuthenticated()">Buy Ticket</a>
+                            <form th:action="@{/addTicket}" method="post" sec:authorize="isAuthenticated()">
+                                <input type="hidden" name="exposition_id" th:value="${exposition.id}">
+                                <button class="btn btn-lg btn-info btn-block" type="submit">Buy Ticket</button>
+                            </form>
                             <a class="btn btn-lg btn-info btn-block" th:href="@{/login}"
                                                                     sec:authorize="isAnonymous()">Buy Ticket</a>
                         </div>

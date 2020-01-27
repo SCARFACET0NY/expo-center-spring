@@ -32,7 +32,7 @@ public class HallController {
         Hall hall = hallService.getHallByType(HallType.LARGE);
         model.addAttribute("hall", hall);
         model.addAttribute("expositions", expositionService.getActiveExpositionsForHall(hall));
-        session.setAttribute("origin", request.getRequestURI());
+        session.setAttribute("origin", request.getRequestURI().substring(1));
 
         return "hall";
     }
@@ -42,7 +42,7 @@ public class HallController {
         Hall hall = hallService.getHallByType(HallType.MEDIUM);
         model.addAttribute("hall", hall);
         model.addAttribute("expositions", expositionService.getActiveExpositionsForHall(hall));
-        session.setAttribute("origin", request.getRequestURI());
+        session.setAttribute("origin", request.getRequestURI().substring(1));
 
         return "hall";
     }
@@ -52,7 +52,7 @@ public class HallController {
         Hall hall = hallService.getHallByType(HallType.SMALL);
         model.addAttribute("hall", hall);
         model.addAttribute("expositions", expositionService.getActiveExpositionsForHall(hall));
-        session.setAttribute("origin", request.getRequestURI());
+        session.setAttribute("origin", request.getRequestURI().substring(1));
 
         return "hall";
     }

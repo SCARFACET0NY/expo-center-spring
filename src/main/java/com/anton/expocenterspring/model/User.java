@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -33,5 +34,5 @@ public class User extends BaseEntity {
     @Enumerated(value = EnumType.STRING)
     private AccountStatus accountStatus;
     @OneToMany(mappedBy = "user")
-    private Set<Payment> payments;
+    private Set<Payment> payments = new HashSet<>();
 }

@@ -26,10 +26,15 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
     }
 
     @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder(11);
+    }
+
+    @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userService);
-        provider.setPasswordEncoder(new BCryptPasswordEncoder(11));
+        provider.setPasswordEncoder(bCryptPasswordEncoder());
         provider.setAuthoritiesMapper(authoritiesMapper());
 
         return provider;
@@ -54,7 +59,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/register", "/largeHall", "/mediumHall", "/smallHall",
-                        "/css/*", "/img/*").permitAll()
+                        "/css/*", "/img/*", "/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -64,5 +69,6 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/");
+        http.headers().frameOptions().disable();
     }
 }

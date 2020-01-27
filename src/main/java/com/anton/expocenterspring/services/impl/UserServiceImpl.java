@@ -25,4 +25,9 @@ public class UserServiceImpl implements UserService {
 
         return new UserPrincipal(user, user.getAccountStatus());
     }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
 }

@@ -11,20 +11,20 @@
     <div class="register">
         <div class="container">
             <h2>Register</h2>
-            <form th:action="@{/register}" method="post" id="registerForm">
+            <form th:action="@{/register}" th:object="${user}" method="post" id="registerForm" >
                 <div class="form-group">
                     <label for="first-name">First Name:</label>
                     <input type="text" id="first-name" class="form-control"
                            placeholder="Enter First Name"
                            required="required"
-                           name="firstName">
+                           th:field="*{firstName}">
                 </div>
                 <div class="form-group">
                     <label for="last-name">Last Name:</label>
                     <input type="text" id="last-name" class="form-control"
                            placeholder="Enter Last Name"
                            required="required"
-                           name="lastName">
+                           th:field="*{lastName}">
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone:</label>
@@ -32,13 +32,13 @@
                            placeholder="Format: 123-456-78-90"
                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
                            required="required"
-                           name="phone">
+                           th:field="*{phone}">
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" id="email" class="form-control"
                            placeholder="Enter Email"
-                           name="email">
+                           th:field="*{email}">
                 </div>
                 <div class="form-group">
                     <label for="card-number">Card Number:</label>
@@ -46,21 +46,21 @@
                            placeholder="Enter Card Number"
                            min="1000000000" max="9999999999"
                            required="required"
-                           name="cardNumber">
+                           th:field="*{cardNumber}">
                 </div>
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" id="username" class="form-control"
                            placeholder="Enter username"
                            required="required"
-                           name="userName">
+                           th:field="*{username}">
                 </div>
                 <div class="form-group">
                     <label for="password">Password:</label>
                     <input type="password" id="password" class="form-control"
                            placeholder="Enter password"
                            required="required"
-                           name="password">
+                           th:field="*{password}">
                 </div>
                 <button type="submit" id="userRegister" class="btn btn-info btn-block">Register</button>
                 <a class="btn btn-dark btn-block" th:href="@{/}">Home</a>

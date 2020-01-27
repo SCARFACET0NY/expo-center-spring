@@ -1,7 +1,7 @@
 package com.anton.expocenterspring.model;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "payment")
 public class Payment extends BaseEntity {

@@ -2,6 +2,7 @@ package com.anton.expocenterspring.services.impl;
 
 import com.anton.expocenterspring.dto.TicketDto;
 import com.anton.expocenterspring.model.Exposition;
+import com.anton.expocenterspring.model.Payment;
 import com.anton.expocenterspring.model.Ticket;
 import com.anton.expocenterspring.repositories.ExpositionRepository;
 import com.anton.expocenterspring.repositories.TicketRepository;
@@ -39,6 +40,12 @@ public class TicketServiceImpl implements TicketService {
         ticketDto.setTicket(ticket);
 
         return ticketDto;
+    }
+
+    @Override
+    public void saveTicket(Ticket ticket, Payment payment) {
+        ticket.setPayment(payment);
+        ticketRepository.save(ticket);
     }
 
     @Override

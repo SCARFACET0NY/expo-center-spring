@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class HallController {
     private final HallService hallService;
@@ -25,26 +28,32 @@ public class HallController {
     }
 
     @RequestMapping("/largeHall")
-    public String getLargeHall(Model model) {
+    public String getLargeHall(Model model, HttpServletRequest request, HttpSession session) {
         Hall hall = hallService.getHallByType(HallType.LARGE);
         model.addAttribute("hall", hall);
         model.addAttribute("expositions", expositionService.getActiveExpositionsForHall(hall));
+        session.setAttribute("origin", request.getRequestURI());
+
         return "hall";
     }
 
     @RequestMapping("/mediumHall")
-    public String getMediumHall(Model model) {
+    public String getMediumHall(Model model, HttpServletRequest request, HttpSession session) {
         Hall hall = hallService.getHallByType(HallType.MEDIUM);
         model.addAttribute("hall", hall);
         model.addAttribute("expositions", expositionService.getActiveExpositionsForHall(hall));
+        session.setAttribute("origin", request.getRequestURI());
+
         return "hall";
     }
 
     @RequestMapping("/smallHall")
-    public String getSmallHall(Model model) {
+    public String getSmallHall(Model model, HttpServletRequest request, HttpSession session) {
         Hall hall = hallService.getHallByType(HallType.SMALL);
         model.addAttribute("hall", hall);
         model.addAttribute("expositions", expositionService.getActiveExpositionsForHall(hall));
+        session.setAttribute("origin", request.getRequestURI());
+
         return "hall";
     }
 }

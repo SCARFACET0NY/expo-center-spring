@@ -79,4 +79,17 @@ public class CartController {
 
         return "redirect:cart";
     }
+
+    @PostMapping("/removeTicket")
+    public String removeTicket(@RequestParam("exposition_id") String id, HttpSession session) {
+        Map<String, TicketDto> cart = (Map<String, TicketDto>) session.getAttribute("cart");
+
+        cart.keySet().removeIf(expositionId -> expositionId.equals(id));
+        double total = ticketService.getCartTotal(cart);
+
+        session.setAttribute("cart", cart);
+        session.setAttribute("total", total);
+
+        return "redirect:cart";
+    }
 }

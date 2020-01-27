@@ -17,13 +17,16 @@
         <div class="btn-group btn-group-lg" sec:authorize="isAuthenticated()">
             <div class="btn-group">
                 <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                    <span>0.00 uah</span><br/>
-                    <span>0 tickets</span>
+                    <span th:text="(${session.total}?:'0.00') + ' uah'"></span><br/>
+                    <span th:text="(${session.cart?.size()}?:'0') + ' tickets'"></span>
                 </button>
                 <div class="dropdown-menu">
-                    <span class="dropdown-item">exposition 1 : 99.99</span>
-                    <div class="dropdown-divider"></div>
-                    <span class="dropdown-item">total: 99.99</span>
+                    <th:block th:each="ticket : ${session.cart?.values()}">
+                        <span class="dropdown-item"
+                              th:text="${ticket.exposition.title + ' : ' + ticket.exposition.price}"></span>
+                        <div class="dropdown-divider"></div>
+                    </th:block>
+                    <span class="dropdown-item" th:text="'total: ' + (${session.total}?:'0.00')"></span>
                 </div>
             </div>
 

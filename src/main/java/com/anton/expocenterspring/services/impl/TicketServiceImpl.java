@@ -9,6 +9,7 @@ import com.anton.expocenterspring.services.TicketService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 @Service
 public class TicketServiceImpl implements TicketService {
@@ -38,5 +39,12 @@ public class TicketServiceImpl implements TicketService {
         ticketDto.setTicket(ticket);
 
         return ticketDto;
+    }
+
+    @Override
+    public double getCartTotal(Map<String, TicketDto> cart) {
+        return cart.values().stream()
+                .mapToDouble(item -> item.getExposition().getPrice() * item.getTicket().getQuantity())
+                .reduce(0.0, Double::sum);
     }
 }

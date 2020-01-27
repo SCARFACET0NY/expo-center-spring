@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,5 +42,18 @@ public class CartController {
         session.setAttribute("total", total);
 
         return "redirect:" + session.getAttribute("origin");
+    }
+
+    @PostMapping("/setDate")
+    public String setTicketDate(@RequestParam("exposition_id") String id, @RequestParam("ticket_date") String ticketDate,
+                                HttpSession session) {
+        Map<String, TicketDto> cart = (Map<String, TicketDto>) session.getAttribute("cart");
+        if (cart.containsKey(id)) {
+            cart.get(id).getTicket().setDate(LocalDate.parse(ticketDate));
+        }
+
+        session.setAttribute("cart", cart);
+
+        return "redirect:cart";
     }
 }

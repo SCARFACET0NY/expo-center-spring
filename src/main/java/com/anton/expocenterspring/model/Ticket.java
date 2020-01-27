@@ -2,7 +2,6 @@ package com.anton.expocenterspring.model;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,7 +9,6 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "ticket")

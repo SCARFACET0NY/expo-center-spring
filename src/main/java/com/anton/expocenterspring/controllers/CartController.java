@@ -2,7 +2,9 @@ package com.anton.expocenterspring.controllers;
 
 import com.anton.expocenterspring.dto.TicketDto;
 import com.anton.expocenterspring.model.Exposition;
+import com.anton.expocenterspring.model.Payment;
 import com.anton.expocenterspring.model.Ticket;
+import com.anton.expocenterspring.services.PaymentService;
 import com.anton.expocenterspring.services.TicketService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +20,11 @@ import java.util.Map;
 @Controller
 public class CartController {
     private final TicketService ticketService;
+    private final PaymentService paymentService;
 
-    public CartController(TicketService ticketService) {
+    public CartController(TicketService ticketService, PaymentService paymentService) {
         this.ticketService = ticketService;
+        this.paymentService = paymentService;
     }
 
     @GetMapping("/cart")
@@ -91,5 +95,25 @@ public class CartController {
         session.setAttribute("total", total);
 
         return "redirect:cart";
+    }
+
+    @PostMapping("/pay")
+    public String payCart(HttpSession session) {
+        Map<String, TicketDto> cart = (Map<String, TicketDto>) session.getAttribute("cart");
+
+        if (!cart.isEmpty()) {
+            double total = ticketService.getCartTotal(cart);
+            Payment payment = paymentService.savePayment(total);
+
+            cart.values().forEach(ticketDto -> {
+                ticketService.saveTicket(ticketDto.getTicket(), payment);
+            });
+            cart.clear();
+
+            session.setAttribute("cart", null);
+            session.setAttribute("total", null);
+        }
+
+        return "redirect:";
     }
 }

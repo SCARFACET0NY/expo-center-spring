@@ -11,47 +11,49 @@
     <div class="container cart">
         <h2 class="cart-header">Tickets</h2>
 
-        <table class="table table-hover">
-            <tr class="bg-info text-dark">
-                <th>title</th>
-                <th>date</th>
-                <th>price</th>
-                <th>quantity</th>
-                <th>action</th>
-            </tr>
-            <tr class="bg-dark text-light">
-                <td>Exposition 1</td>
-                <td>
-                    <form th:action="@{/setDate}" method="post">
-                        <input type="hidden" name="exposition_id" value="">
-                        <input type="date" name="ticket_date" value="2020-01-26"
-                               min="2020-01-26"
-                               max="2020-01-31">
-                        <button type="submit" class="btn btn-info date">set</button>
-                    </form>
-                </td>
-                <td id="price">99.99</td>
-                <td>
-                    <form th:action="@{/setQuantity}" method="post">
-                        <input type="hidden" name="exposition_id" value="">
-                        <input name="sign" type="submit" value="-" class="btn btn-info rounded-circle sign">
-                        <span>1</span>
-                        <input name="sign" type="submit" value="+" class="btn btn-info rounded-circle sign">
-                    </form>
-                </td>
-                <td>
-                    <form th:action="@{/removeTicket}" method="post">
-                        <input type="hidden" name="exposition_id" value="${item.exposition.id}">
-                        <button type="submit" class="btn btn-info">remove</button>
-                    </form>
-                </td>
-            </tr>
-        </table>
-        <p class="total">Total: 99.99</p>
+        <th:block th:if="${not #maps.isEmpty(session.cart)}">
+            <table class="table table-hover">
+                <tr class="bg-info text-dark">
+                    <th>title</th>
+                    <th>date</th>
+                    <th>price</th>
+                    <th>quantity</th>
+                    <th>action</th>
+                </tr>
+                <tr class="bg-dark text-light" th:each="item : ${session.cart.values()}">
+                    <td th:text="${item.exposition.title}"></td>
+                    <td>
+                        <form th:action="@{/setDate}" method="post">
+                            <input type="hidden" name="exposition_id" th:value="${item.exposition.id}">
+                            <input type="date" name="ticket_date" th:value="${item.ticket.date}"
+                                   th:min="${item.ticket.date}"
+                                   th:max="${item.exposition.endDate}">
+                            <button type="submit" class="btn btn-info date">set</button>
+                        </form>
+                    </td>
+                    <td id="price" th:text="${item.exposition.price}"></td>
+                    <td>
+                        <form th:action="@{/setQuantity}" method="post">
+                            <input type="hidden" name="exposition_id" th:value="${item.exposition.id}">
+                            <input name="sign" type="submit" th:value="'-'" class="btn btn-info rounded-circle sign">
+                            <span th:text="${item.ticket.quantity}"></span>
+                            <input name="sign" type="submit" th:value="'+'" class="btn btn-info rounded-circle sign">
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{/removeTicket}" method="post">
+                            <input type="hidden" name="exposition_id" th:value="${item.exposition.id}">
+                            <button type="submit" class="btn btn-info">remove</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+            <p class="total" th:text="'Total: ' + ${session.total}"></p>
 
-        <form th:action="@{pay}" method="post">
-            <button type="submit" class="btn btn-lg btn-info btn-block">Pay</button>
-        </form>
+            <form th:action="@{pay}" method="post">
+                <button type="submit" class="btn btn-lg btn-info btn-block">Pay</button>
+            </form>
+        </th:block>
 
         <a class="btn btn-lg btn-dark btn-block home" th:href="@{/}">Home</a>
     </div>

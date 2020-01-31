@@ -59,7 +59,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/register", "/largeHall", "/mediumHall", "/smallHall",
-                        "/css/*", "/img/*", "/h2-console/**").permitAll()
+                        "/css/*", "/img/*", "/h2-console/**", "/webjars/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

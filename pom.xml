@@ -16,6 +16,12 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <activation.version>1.1.1</activation.version>
+        <mail.verion>1.6.2</mail.verion>
+        <jquery.version>3.2.1</jquery.version>
+        <bootstrap.verion>4.0.0</bootstrap.verion>
+        <popper.version>1.12.9</popper.version>
+        <font-awesome.version>4.7.0</font-awesome.version>
     </properties>
 
     <dependencies>
@@ -68,22 +74,32 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
-            <version>3.2.1</version>
+            <version>${jquery.version}</version>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
-            <version>4.0.0</version>
+            <version>${bootstrap.verion}</version>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>popper.js</artifactId>
-            <version>1.12.9</version>
+            <version>${popper.version}</version>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>font-awesome</artifactId>
-            <version>4.7.0</version>
+            <version>${font-awesome.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>${mail.verion}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>${activation.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -21,4 +21,9 @@ public class ExpositionServiceImpl implements ExpositionService {
     public Set<Exposition> getActiveExpositionsForHall(Hall hall) {
         return expositionRepository.findExpositionsByHall_IdAndEndDateGreaterThanEqual(hall.getId(), LocalDate.now());
     }
+
+    @Override
+    public Set<Exposition> searchExpositionsByTitle(String query) {
+        return expositionRepository.searchByTitle(query);
+    }
 }

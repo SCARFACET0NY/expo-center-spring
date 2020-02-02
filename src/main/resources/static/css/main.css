@@ -3,7 +3,7 @@ body {
     background-color: white;
 }
 
-.container-fluid {
+.container-fluid, .container {
     padding: 2em 6em;
 }
 
@@ -21,6 +21,10 @@ header .logo span {
     left: 12px;
     font-size: 33px;
     font-weight: bold;
+}
+
+header .btn-light {
+    margin-right: 0.5em;
 }
 
 .sub-header {
@@ -65,8 +69,12 @@ header .logo span {
     font-size: 20px;
 }
 
+.search input {
+    padding: 0.7em;
+}
+
 h2 {
-    margin-bottom: 20px;
+    margin-bottom: 1em;
     font-weight: bold;
     font-size: 40px;
     text-align: center;
@@ -185,4 +193,40 @@ footer .logo span {
 .alert {
     font-size: 22px;
     text-align: center;
+}
+
+#accordion a {
+    color: black;
+}
+
+#accordion .card {
+    margin-bottom: 0;
+    border-radius: 0.25em;
+}
+
+#accordion .container-fluid {
+    padding: 0;
+}
+
+.pagination {
+    justify-content: center;
+    margin-top: 1.5em;
+    font-size: 1.5em;
+    color: grey;
+}
+
+.pagination {
+    justify-content: center;
+    margin-top: 1.5em;
+    margin-bottom: 3em;
+    font-size: 1.5em;
+    color: grey;
+}
+
+.pagination a {
+    color: black;
+}
+
+.pagination .active {
+    color: cornflowerblue;
 }

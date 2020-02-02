@@ -11,23 +11,26 @@
 <body>
     <th:block th:include="header.html" />
     <th:block th:include="sub-header.html" />
-    <div class="container-fluid">
-        <h2>Available Halls</h2>
-
-        <div class="row">
-            <div th:each="hall : ${halls}" class="col-md-4">
-                <div class="card">
-                    <img class="card-img-top" th:src="@{${hall.imagePath}}">
-                    <div class="card-body">
-                        <h4 class="card-title" th:text="${hall.title}"></h4>
-                        <p th:text="${'Area: ' + hall.area}"></p>
-                        <a class="btn btn-lg btn-info btn-block" th:href="@{${hall.type.toString().toLowerCase() + 'Hall'}}">
-                            Show expositions
-                        </a>
+    <div class="search">
+        <div class="container">
+            <h2>Search Expositions</h2>
+            <form method="get" th:action="@{/search}">
+                <div class="row">
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="query">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-lg btn-info form-control">Search</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
+    </div>
+    <div class="container-fluid">
+        <th:block th:if="${#sets.isEmpty(expositions)}">
+            <h2 th:text="${emptySearch}"></h2>
+        </th:block>
+        <th:block th:include="expositions.html" />
     </div>
     <th:block th:include="footer.html" />
 

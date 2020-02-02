@@ -7,4 +7,6 @@ import java.util.Set;
 
 public interface ExpositionService {
     Set<Exposition> getActiveExpositionsForHall(Hall hall);
+
+    Set<Exposition> searchExpositionsByTitle(String query);
 }

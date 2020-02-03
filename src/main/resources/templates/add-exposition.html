@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+</head>
+<body>
+    <div class="container">
+        <h2>Add Exposition</h2>
+        <form th:action="@{/admin/add}" th:object="${exposition}" method="post">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" class="form-control" th:field="*{title}">
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea type="text" id="description" class="form-control" th:field="*{description}"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" id="price" class="form-control" step="any" th:field="*{price}">
+            </div>
+            <div class="form-group">
+                <label for="image_path">Image Path:</label>
+                <input type="text" id="image_path" class="form-control" th:field="*{imagePath}">
+            </div>
+            <div class="form-group">
+                <label for="start_date">Start Date:</label>
+                <input type="date"  id="start_date" th:field="*{startDate}" >
+            </div>
+            <div class="form-group">
+                <label for="end_date">End Date:</label>
+                <input type="date"  id="end_date" th:field="*{endDate}" >
+            </div>
+            <div class="form-group">
+                <label for="halls">Choose Hall:</label>
+                <select th:field="*{hall}" id="halls" class="form-control">
+                    <option th:each="hall : ${halls}" th:value="${hall.id}" th:text="${hall.title}"></option>
+                </select>
+            </div>
+            <button type="submit" id="userLogin" class="btn btn-info btn-block">Add</button>
+            <a class="btn btn-dark btn-block" th:href="@{/admin}">Admin</a>
+        </form>
+    </div>
+</body>
+</html>

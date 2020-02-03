@@ -26,4 +26,9 @@ public class ExpositionServiceImpl implements ExpositionService {
     public Set<Exposition> searchExpositionsByTitle(String query) {
         return expositionRepository.searchByTitle(query);
     }
+
+    @Override
+    public Exposition save(Exposition exposition) {
+        return expositionRepository.save(exposition);
+    }
 }

@@ -9,4 +9,6 @@ public interface ExpositionService {
     Set<Exposition> getActiveExpositionsForHall(Hall hall);
 
     Set<Exposition> searchExpositionsByTitle(String query);
+
+    Exposition save(Exposition exposition);
 }

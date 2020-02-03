@@ -18,8 +18,18 @@ public class ExpositionServiceImpl implements ExpositionService {
     }
 
     @Override
+    public Set<Exposition> getAllActiveExpositions() {
+        return expositionRepository.findExpositionsByEndDateGreaterThanEqual(LocalDate.now());
+    }
+
+    @Override
     public Set<Exposition> getActiveExpositionsForHall(Hall hall) {
         return expositionRepository.findExpositionsByHall_IdAndEndDateGreaterThanEqual(hall.getId(), LocalDate.now());
+    }
+
+    @Override
+    public Exposition getExpositionById(Long id) {
+        return expositionRepository.findById(id).orElse(null);
     }
 
     @Override

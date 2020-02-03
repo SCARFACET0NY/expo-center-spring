@@ -38,7 +38,7 @@
                     <option th:each="hall : ${halls}" th:value="${hall.id}" th:text="${hall.title}"></option>
                 </select>
             </div>
-            <button type="submit" id="userLogin" class="btn btn-info btn-block">Add</button>
+            <button type="submit" class="btn btn-info btn-block">Add</button>
             <a class="btn btn-dark btn-block" th:href="@{/admin}">Admin</a>
         </form>
     </div>

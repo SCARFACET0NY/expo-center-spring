@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -48,5 +49,24 @@ public class AdminController {
     public String addExposition(@ModelAttribute Exposition exposition) {
         expositionService.save(exposition);
         return "redirect:/admin";
+    }
+
+    @GetMapping("/admin/update")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String getUpdateExpositionPage(Model model) {
+        model.addAttribute("expositions", expositionService.getAllActiveExpositions());
+        model.addAttribute("halls", hallService.getAllHalls());
+
+        return "update-exposition";
+    }
+
+    @GetMapping("/admin/choose")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String chooseExposition(@RequestParam("exposition_id") Long id, Model model) {
+        model.addAttribute("chosenExposition", expositionService.getExpositionById(id));
+        model.addAttribute("expositions", expositionService.getAllActiveExpositions());
+        model.addAttribute("halls", hallService.getAllHalls());
+
+        return "update-exposition";
     }
 }

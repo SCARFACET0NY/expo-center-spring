@@ -1,0 +1,23 @@
+<header>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="dropdown">
+            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" th:text="${#locale}"></button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="?locale=en">en</a>
+                <a class="dropdown-item" href="?locale=ru">ru</a>
+                <a class="dropdown-item" href="?locale=uk">uk</a>
+            </div>
+        </div>
+        <div class="logo">
+            <a href="/" class="nav-link text-light">
+                <img src="img/center_icon_64.png"/>
+                <span>Expo Center</span>
+            </a>
+        </div>
+
+        <a type="button" class="btn btn-light btn-lg" href="/admin/add">Add Exposition</a>
+        <a type="button" class="btn btn-light btn-lg" href="/admin/update">Update Exposition</a>
+        <a type="button" class="btn btn-light btn-lg" href="/admin/statistics">Statistics</a>
+        <a type="button" class="btn btn-light btn-lg" href="/logout">Logout</a>
+    </nav>
+</header>

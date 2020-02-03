@@ -1,0 +1,39 @@
+<div class="container">
+    <h2>Admin</h2>
+    <table class="table table-striped table-dark">
+        <tbody>
+        <tr>
+            <td>First Name</td>
+            <td th:text="${user.firstName}"></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td th:text="${user.lastName}"></td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td th:text="${user.phone}"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td th:text="${user.email}"></td>
+        </tr>
+        <tr>
+            <td>Date Joined</td>
+            <td th:text="${user.dateJoined.toLocalDate()}"></td>
+        </tr>
+        <tr>
+            <td>Card Number</td>
+            <td th:text="${user.cardNumber}"></td>
+        </tr>
+        <tr>
+            <td>Username</td>
+            <td th:text="${user.username}"></td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td th:text="${user.accountStatus}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

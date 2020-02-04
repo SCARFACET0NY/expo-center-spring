@@ -230,3 +230,9 @@ footer .logo span {
 .pagination .active {
     color: cornflowerblue;
 }
+
+.pagination a.disabled {
+    cursor: default;
+    pointer-events: none;
+    color: gray;
+}

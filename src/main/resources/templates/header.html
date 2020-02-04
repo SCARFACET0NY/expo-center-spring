@@ -35,8 +35,8 @@
             </button>
         </div>
 
-        <a type="button" class="btn btn-light btn-lg" th:href="@{/purchaseHistory}" sec:authorize="isAuthenticated()">
-            Purchase History
+        <a type="button" class="btn btn-light btn-lg" th:href="@{/paymentHistory}" sec:authorize="isAuthenticated()">
+            Payment History
         </a>
         <a type="button" class="btn btn-light btn-lg" th:href="@{/admin}" sec:authorize="hasAuthority('ROLE_ADMIN')">
             Admin

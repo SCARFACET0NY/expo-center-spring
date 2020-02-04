@@ -1,0 +1,34 @@
+<div id="accordion">
+    <tr th:each="payment, index : ${payments}">
+        <div class="card">
+            <div class="card-header">
+                <a class="card-link " data-toggle="collapse" th:href="@{'#collapse' + ${index.index}}">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col" th:text="'Number: ' + ${index.index + 1}"></div>
+                            <div class="col" th:text="'Card Number: ' + ${payment.user.cardNumber}"></div>
+                            <div class="col" th:text="'Date: ' + ${payment.date}"></div>
+                            <div class="col" th:text="'Total: ' + ${payment.total}"></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div th:id="'collapse' + ${index.index}" class="collapse" data-parent="#accordion">
+                <table class="table table-striped">
+                    <tr>
+                        <th>title</th>
+                        <th>date</th>
+                        <th>quantity</th>
+                        <th>price</th>
+                    </tr>
+                    <tr th:each="ticket : ${payment.tickets}">
+                        <td th:text="${ticket.exposition.title}"></td>
+                        <td th:text="${ticket.date}"></td>
+                        <td th:text="${ticket.quantity}"></td>
+                        <td th:text="${ticket.exposition.price}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </tr>
+</div>

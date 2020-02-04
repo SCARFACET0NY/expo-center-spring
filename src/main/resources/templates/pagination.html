@@ -1,0 +1,16 @@
+<th:block th:if="${not #lists.isEmpty(payments)}">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" th:href="@{''(page=${page - 1})}" th:text="Previous"
+               th:classappend="${page < 1 ? 'disabled' : ''}"></a>
+        </li>
+        <li class="page-item" th:each="i : ${#numbers.sequence(0, numOfPages - 1)}">
+            <a class="page-link" th:classappend="${i == page ? 'active' : ''}" th:href="@{''(page=${page})}"
+               th:text="${i + 1}"></a>
+        </li>
+        <li class="page-item ">
+            <a class="page-link" th:href="@{''(page=${page + 1})}" th:text="Next"
+               th:classappend="${page >= numOfPages - 1 ? 'disabled' : ''}"></a>
+        </li>
+    </ul>
+</th:block>

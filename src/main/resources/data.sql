@@ -1,5 +1,5 @@
 INSERT INTO `user` (id, first_name, last_name, phone, email, date_joined, card_number, username, password, account_status)
-VALUES (3, 'Anton', 'Shevchenko', '123-456-78-90', 'd1853327@urhen.com', '2020-01-20 18:38:25', 1000000000, 'anton', '$2a$11$avyZ9vqFQCaEufoT2npVku2uoAX3ibp/37d7H1DHu9460mG04TSMW', 'ADMIN');
+VALUES (3, 'Anton', 'Shevchenko', '123-456-78-90', 'ssa.ssa.ssa11@gmail.com', '2020-01-20 18:38:25', 1000000000, 'anton', '$2a$11$avyZ9vqFQCaEufoT2npVku2uoAX3ibp/37d7H1DHu9460mG04TSMW', 'ADMIN');
 
 INSERT INTO `hall` (id, title, area, image_path, `type`) VALUES (1, 'Large Hall', 500,' img/hall_large.jpg', 'LARGE'),
 (2, 'Medium Hall', 200,' img/hall_medium.jpg', 'MEDIUM'), (3, 'Small Hall', 100, 'img/hall_small.jpg', 'SMALL');

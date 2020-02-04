@@ -20,29 +20,29 @@
                     <th>quantity</th>
                     <th>action</th>
                 </tr>
-                <tr class="bg-dark text-light" th:each="item : ${session.cart.values()}">
-                    <td th:text="${item.exposition.title}"></td>
+                <tr class="bg-dark text-light" th:each="ticket : ${session.cart.values()}">
+                    <td th:text="${ticket.exposition.title}"></td>
                     <td>
                         <form th:action="@{/setDate}" method="post">
-                            <input type="hidden" name="exposition_id" th:value="${item.exposition.id}">
-                            <input type="date" name="ticket_date" th:value="${item.ticket.date}"
-                                   th:min="${item.ticket.date}"
-                                   th:max="${item.exposition.endDate}">
+                            <input type="hidden" name="exposition_id" th:value="${ticket.exposition.id}">
+                            <input type="date" name="ticket_date" th:value="${ticket.date}"
+                                   th:min="${ticket.date}"
+                                   th:max="${ticket.exposition.endDate}">
                             <button type="submit" class="btn btn-info date">set</button>
                         </form>
                     </td>
-                    <td id="price" th:text="${item.exposition.price}"></td>
+                    <td id="price" th:text="${ticket.exposition.price}"></td>
                     <td>
                         <form th:action="@{/setQuantity}" method="post">
-                            <input type="hidden" name="exposition_id" th:value="${item.exposition.id}">
+                            <input type="hidden" name="exposition_id" th:value="${ticket.exposition.id}">
                             <input name="sign" type="submit" th:value="'-'" class="btn btn-info rounded-circle sign">
-                            <span th:text="${item.ticket.quantity}"></span>
+                            <span th:text="${ticket.quantity}"></span>
                             <input name="sign" type="submit" th:value="'+'" class="btn btn-info rounded-circle sign">
                         </form>
                     </td>
                     <td>
                         <form th:action="@{/removeTicket}" method="post">
-                            <input type="hidden" name="exposition_id" th:value="${item.exposition.id}">
+                            <input type="hidden" name="exposition_id" th:value="${ticket.exposition.id}">
                             <button type="submit" class="btn btn-info">remove</button>
                         </form>
                     </td>

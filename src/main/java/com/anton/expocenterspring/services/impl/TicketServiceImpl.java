@@ -1,6 +1,5 @@
 package com.anton.expocenterspring.services.impl;
 
-import com.anton.expocenterspring.dto.TicketDto;
 import com.anton.expocenterspring.model.Exposition;
 import com.anton.expocenterspring.model.Payment;
 import com.anton.expocenterspring.model.Ticket;
@@ -24,8 +23,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public TicketDto createTicketDto(long expositionId) {
-        TicketDto ticketDto = new TicketDto();
+    public Ticket createTicket(long expositionId) {
         Exposition exposition = expositionRepository.findById(expositionId).get();
         LocalDate date;
 
@@ -35,11 +33,7 @@ public class TicketServiceImpl implements TicketService {
             date = exposition.getStartDate();
         }
 
-        Ticket ticket = Ticket.builder().date(date).quantity(ONE_TICKET).exposition(exposition).build();
-        ticketDto.setExposition(exposition);
-        ticketDto.setTicket(ticket);
-
-        return ticketDto;
+        return Ticket.builder().date(date).quantity(ONE_TICKET).exposition(exposition).build();
     }
 
     @Override
@@ -49,9 +43,9 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public double getCartTotal(Map<String, TicketDto> cart) {
+    public double getCartTotal(Map<String, Ticket> cart) {
         return cart.values().stream()
-                .mapToDouble(item -> item.getExposition().getPrice() * item.getTicket().getQuantity())
+                .mapToDouble(ticket -> ticket.getExposition().getPrice() * ticket.getQuantity())
                 .reduce(0.0, Double::sum);
     }
 }

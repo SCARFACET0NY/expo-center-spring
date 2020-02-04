@@ -1,7 +1,6 @@
 package com.anton.expocenterspring.controllers;
 
 import com.anton.expocenterspring.auth.UserPrincipal;
-import com.anton.expocenterspring.dto.TicketDto;
 import com.anton.expocenterspring.model.Exposition;
 import com.anton.expocenterspring.model.Payment;
 import com.anton.expocenterspring.model.Ticket;
@@ -47,12 +46,12 @@ public class CartController {
 
     @PostMapping("/addTicket")
     public String addTicket(@RequestParam("exposition_id") String id, HttpSession session) {
-        Map<String, TicketDto> cart = (Map<String, TicketDto>) session.getAttribute("cart");
+        Map<String, Ticket> cart = (Map<String, Ticket>) session.getAttribute("cart");
         if (cart == null) cart = new HashMap<>();
 
         if (id != null) {
             if (!cart.containsKey(id)) {
-                cart.put(id, ticketService.createTicketDto(Long.parseLong(id)));
+                cart.put(id, ticketService.createTicket(Long.parseLong(id)));
             }
         }
         double total = ticketService.getCartTotal(cart);
@@ -66,9 +65,9 @@ public class CartController {
     @PostMapping("/setDate")
     public String setTicketDate(@RequestParam("exposition_id") String id, @RequestParam("ticket_date") String ticketDate,
                                 HttpSession session) {
-        Map<String, TicketDto> cart = (Map<String, TicketDto>) session.getAttribute("cart");
+        Map<String, Ticket> cart = (Map<String, Ticket>) session.getAttribute("cart");
         if (cart.containsKey(id)) {
-            cart.get(id).getTicket().setDate(LocalDate.parse(ticketDate));
+            cart.get(id).setDate(LocalDate.parse(ticketDate));
         }
 
         session.setAttribute("cart", cart);
@@ -79,10 +78,10 @@ public class CartController {
     @PostMapping("/setQuantity")
     public String setTicketQuantity(@RequestParam("exposition_id") String id, @RequestParam String sign,
                                     HttpSession session) {
-        Map<String, TicketDto> cart = (Map<String, TicketDto>) session.getAttribute("cart");
+        Map<String, Ticket> cart = (Map<String, Ticket>) session.getAttribute("cart");
         if (cart.containsKey(id)) {
-            Ticket ticket = cart.get(id).getTicket();
-            Exposition exposition = cart.get(id).getExposition();
+            Ticket ticket = cart.get(id);
+            Exposition exposition = ticket.getExposition();
             if (sign.equals("+")) {
                 ticket.setQuantity(ticket.getQuantity() + 1);
                 session.setAttribute("total", (double) session.getAttribute("total") + exposition.getPrice());
@@ -99,7 +98,7 @@ public class CartController {
 
     @PostMapping("/removeTicket")
     public String removeTicket(@RequestParam("exposition_id") String id, HttpSession session) {
-        Map<String, TicketDto> cart = (Map<String, TicketDto>) session.getAttribute("cart");
+        Map<String, Ticket> cart = (Map<String, Ticket>) session.getAttribute("cart");
 
         cart.keySet().removeIf(expositionId -> expositionId.equals(id));
         double total = ticketService.getCartTotal(cart);
@@ -112,14 +111,14 @@ public class CartController {
 
     @PostMapping("/pay")
     public String payCart(HttpSession session) {
-        Map<String, TicketDto> cart = (Map<String, TicketDto>) session.getAttribute("cart");
+        Map<String, Ticket> cart = (Map<String, Ticket>) session.getAttribute("cart");
 
         if (!cart.isEmpty()) {
             double total = ticketService.getCartTotal(cart);
             Payment payment = paymentService.savePayment(total);
 
-            cart.values().forEach(ticketDto -> {
-                ticketService.saveTicket(ticketDto.getTicket(), payment);
+            cart.values().forEach(ticket -> {
+                ticketService.saveTicket(ticket, payment);
             });
 
             return "redirect:sendMail";
@@ -131,7 +130,7 @@ public class CartController {
     @GetMapping("/sendMail")
     public String sendMail(HttpSession session) {
         User user = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
-        Map<String, TicketDto> cart = (Map<String, TicketDto>) session.getAttribute("cart");
+        Map<String, Ticket> cart = (Map<String, Ticket>) session.getAttribute("cart");
         double total = (double) session.getAttribute("total");
 
         Properties properties = emailService.loadProperties();

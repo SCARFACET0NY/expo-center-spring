@@ -44,8 +44,8 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public double getCartTotal(Map<String, Ticket> cart) {
-        return cart.values().stream()
+        return Math.round(cart.values().stream()
                 .mapToDouble(ticket -> ticket.getExposition().getPrice() * ticket.getQuantity())
-                .reduce(0.0, Double::sum);
+                .reduce(0.0, Double::sum) * 100) / 100.0;
     }
 }

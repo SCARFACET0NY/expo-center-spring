@@ -84,11 +84,11 @@ public class CartController {
             Exposition exposition = ticket.getExposition();
             if (sign.equals("+")) {
                 ticket.setQuantity(ticket.getQuantity() + 1);
-                session.setAttribute("total", (double) session.getAttribute("total") + exposition.getPrice());
+                session.setAttribute("total", ticketService.getCartTotal(cart));
             } else if (sign.equals("-")) {
                 if (ticket.getQuantity() > 1) {
                     ticket.setQuantity(ticket.getQuantity() - 1);
-                    session.setAttribute("total", (double) session.getAttribute("total") - exposition.getPrice());
+                    session.setAttribute("total", ticketService.getCartTotal(cart));
                 }
             }
         }

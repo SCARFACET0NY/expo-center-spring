@@ -1,6 +1,8 @@
 body {
     font-family: "Courier 10 Pitch", Serif;
     background-color: white;
+    min-height: 100vh;
+    position: relative;
 }
 
 .container-fluid, .container {
@@ -168,7 +170,9 @@ h2 {
 }
 
 footer {
-    min-height: 80px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 }
 
 footer .logo span {

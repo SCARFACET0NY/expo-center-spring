@@ -1,5 +1,6 @@
 package com.anton.expocenterspring.config;
 
+import com.anton.expocenterspring.converter.LocalDateToStringConverter;
 import com.anton.expocenterspring.converter.StringToLocalDateConverter;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -45,5 +46,6 @@ public class ApplicationConfiguration implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new StringToLocalDateConverter());
+        registry.addConverter(new LocalDateToStringConverter());
     }
 }

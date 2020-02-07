@@ -7,7 +7,6 @@ import com.anton.expocenterspring.model.Ticket;
 import com.anton.expocenterspring.model.User;
 import com.anton.expocenterspring.services.EmailService;
 import com.anton.expocenterspring.services.PaymentService;
-import com.anton.expocenterspring.services.TicketService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,12 +28,10 @@ import java.util.Properties;
 
 @Controller
 public class CartController {
-    private final TicketService ticketService;
     private final PaymentService paymentService;
     private final EmailService emailService;
 
-    public CartController(TicketService ticketService, PaymentService paymentService, EmailService emailService) {
-        this.ticketService = ticketService;
+    public CartController(PaymentService paymentService, EmailService emailService) {
         this.paymentService = paymentService;
         this.emailService = emailService;
     }
@@ -51,10 +48,10 @@ public class CartController {
 
         if (id != null) {
             if (!cart.containsKey(id)) {
-                cart.put(id, ticketService.createTicket(Long.parseLong(id)));
+                cart.put(id, paymentService.createTicket(Long.parseLong(id)));
             }
         }
-        double total = ticketService.getCartTotal(cart);
+        double total = paymentService.getCartTotal(cart);
 
         session.setAttribute("cart", cart);
         session.setAttribute("total", total);
@@ -84,11 +81,11 @@ public class CartController {
             Exposition exposition = ticket.getExposition();
             if (sign.equals("+")) {
                 ticket.setQuantity(ticket.getQuantity() + 1);
-                session.setAttribute("total", ticketService.getCartTotal(cart));
+                session.setAttribute("total", paymentService.getCartTotal(cart));
             } else if (sign.equals("-")) {
                 if (ticket.getQuantity() > 1) {
                     ticket.setQuantity(ticket.getQuantity() - 1);
-                    session.setAttribute("total", ticketService.getCartTotal(cart));
+                    session.setAttribute("total", paymentService.getCartTotal(cart));
                 }
             }
         }
@@ -101,7 +98,7 @@ public class CartController {
         Map<String, Ticket> cart = (Map<String, Ticket>) session.getAttribute("cart");
 
         cart.keySet().removeIf(expositionId -> expositionId.equals(id));
-        double total = ticketService.getCartTotal(cart);
+        double total = paymentService.getCartTotal(cart);
 
         session.setAttribute("cart", cart);
         session.setAttribute("total", total);
@@ -114,12 +111,7 @@ public class CartController {
         Map<String, Ticket> cart = (Map<String, Ticket>) session.getAttribute("cart");
 
         if (!cart.isEmpty()) {
-            double total = ticketService.getCartTotal(cart);
-            Payment payment = paymentService.savePayment(total);
-
-            cart.values().forEach(ticket -> {
-                ticketService.saveTicket(ticket, payment);
-            });
+            paymentService.savePayment(paymentService.getCartTotal(cart), cart);
 
             return "redirect:sendMail";
         }

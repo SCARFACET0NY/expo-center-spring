@@ -141,6 +141,8 @@ public class CartController {
                     properties.getProperty("mail.smtp.password"));
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
+
+            session.setAttribute("mailSuccess", user.getEmail());
         } catch (MessagingException e) {
             e.printStackTrace();
         }

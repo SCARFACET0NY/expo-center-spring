@@ -22,8 +22,13 @@ public class HallController {
     }
 
     @RequestMapping({"", "/"})
-    public String getAllHalls(Model model) {
+    public String getAllHalls(HttpSession session, Model model) {
         model.addAttribute("halls", hallService.getAllHalls());
+        if (session.getAttribute("mailSuccess") != null) {
+            model.addAttribute("mailSuccess", session.getAttribute("mailSuccess"));
+            session.setAttribute("mailSuccess", null);
+        }
+
         return "index";
     }
 

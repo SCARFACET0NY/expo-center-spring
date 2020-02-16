@@ -38,6 +38,7 @@
                     <label for="email">Email:</label>
                     <input type="email" id="email" class="form-control"
                            placeholder="Enter Email"
+                           required="required"
                            th:field="*{email}">
                 </div>
                 <div class="form-group">
@@ -53,6 +54,7 @@
                     <input type="text" id="username" class="form-control"
                            placeholder="Enter username"
                            required="required"
+                           minlength="3"
                            th:field="*{username}">
                 </div>
                 <div class="form-group">
@@ -60,6 +62,7 @@
                     <input type="password" id="password" class="form-control"
                            placeholder="Enter password"
                            required="required"
+                           minlength="5"
                            th:field="*{password}">
                 </div>
                 <button type="submit" id="userRegister" class="btn btn-info btn-block">Register</button>

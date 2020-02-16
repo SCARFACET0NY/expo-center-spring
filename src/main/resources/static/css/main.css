@@ -199,6 +199,10 @@ footer .logo span {
     text-align: center;
 }
 
+.alert-success a {
+    color: green;
+}
+
 #accordion a {
     color: black;
 }
@@ -239,4 +243,8 @@ footer .logo span {
     cursor: default;
     pointer-events: none;
     color: gray;
+}
+
+.red {
+    color: red;
 }

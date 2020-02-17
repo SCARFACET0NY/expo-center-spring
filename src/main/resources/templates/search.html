@@ -13,22 +13,22 @@
     <th:block th:include="sub-header.html" />
     <div class="search">
         <div class="container">
-            <h2>Search Expositions</h2>
+            <h2 th:text="#{expo.search.expositions}"></h2>
             <form method="get" th:action="@{/search}">
                 <div class="row">
                     <div class="col-md-9">
                         <input type="text" class="form-control" name="query">
                     </div>
                     <div class="col-md-3">
-                        <button type="submit" class="btn btn-lg btn-info form-control">Search</button>
+                        <button type="submit" class="btn btn-lg btn-info form-control" th:text="#{expo.search}"></button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
     <div class="container-fluid">
-        <th:block th:if="${#sets.isEmpty(expositions)}">
-            <h2 th:text="${emptySearch}"></h2>
+        <th:block th:if="${not #strings.isEmpty(emptySearch)}">
+            <h2 th:text="#{expo.search.empty}"></h2>
         </th:block>
         <th:block th:include="expositions.html" />
     </div>

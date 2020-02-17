@@ -17,8 +17,8 @@
         <div class="btn-group btn-group-lg" sec:authorize="isAuthenticated()">
             <div class="btn-group">
                 <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                    <span th:text="(${session.total}?:'0.00') + ' uah'"></span><br/>
-                    <span th:text="(${session.cart?.size()}?:'0') + ' tickets'"></span>
+                    <span th:text="(${session.total}?:'0.00') + ' ' + #{expo.uah}"></span><br/>
+                    <span th:text="(${session.cart?.size()}?:'0') + ' ' + #{expo.tickets}"></span>
                 </button>
                 <div class="dropdown-menu">
                     <th:block th:each="ticket : ${session.cart?.values()}">
@@ -26,26 +26,22 @@
                               th:text="${ticket.exposition.title + ' : ' + ticket.exposition.price}"></span>
                         <div class="dropdown-divider"></div>
                     </th:block>
-                    <span class="dropdown-item" th:text="'total: ' + (${session.total}?:'0.00')"></span>
+                    <span class="dropdown-item" th:text="#{expo.total} + ': ' + (${session.total}?:'0.00')"></span>
                 </div>
             </div>
 
             <button type="button" class="btn btn-info">
-                <a th:href="@{/cart}" class="nav-link text-light">Checkout</a>
+                <a th:href="@{/cart}" class="nav-link text-light" th:text="#{expo.checkout}"></a>
             </button>
         </div>
 
-        <a type="button" class="btn btn-light btn-lg" th:href="@{/paymentHistory}" sec:authorize="isAuthenticated()">
-            Payment History
-        </a>
-        <a type="button" class="btn btn-light btn-lg" th:href="@{/admin}" sec:authorize="hasAuthority('ROLE_ADMIN')">
-            Admin
-        </a>
-        <a type="button" class="btn btn-light btn-lg" th:href="@{/login}" sec:authorize="isAnonymous()">
-            Login
-        </a>
-        <a type="button" class="btn btn-light btn-lg" th:href="@{/logout}" sec:authorize="isAuthenticated()">
-            Logout
-        </a>
+        <a type="button" class="btn btn-light btn-lg" th:href="@{/paymentHistory}" sec:authorize="isAuthenticated()"
+            th:text="#{expo.purchase.history}"></a>
+        <a type="button" class="btn btn-light btn-lg" th:href="@{/admin}" sec:authorize="hasAuthority('ROLE_ADMIN')"
+            th:text="#{expo.admin}"></a>
+        <a type="button" class="btn btn-light btn-lg" th:href="@{/login}" sec:authorize="isAnonymous()"
+            th:text="#{expo.login}"></a>
+        <a type="button" class="btn btn-light btn-lg" th:href="@{/logout}" sec:authorize="isAuthenticated()"
+            th:text="#{expo.logout}"></a>
     </nav>
 </header>

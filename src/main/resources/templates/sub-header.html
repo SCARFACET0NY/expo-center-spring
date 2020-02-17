@@ -4,28 +4,28 @@
             <a class="nav-link" th:href="@{/largeHall}"
                th:classappend="${#httpServletRequest.getRequestURI().equals('/largeHall') ? 'text-light' : ''}">
                 <img class="icon" th:src="@{img/hall_large_icon.png}"/>
-                <span>Large Hall</span>
+                <span th:text="#{expo.hall.large}"></span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" th:href="@{/mediumHall}"
                th:classappend="${#httpServletRequest.getRequestURI().equals('/mediumHall') ? 'text-light' : ''}">
                 <img class="icon" th:src="@{img/hall_medium_icon.png}"/>
-                <span>Medium Hall</span>
+                <span th:text="#{expo.hall.medium}"></span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" th:href="@{/smallHall}"
                th:classappend="${#httpServletRequest.getRequestURI().equals('/smallHall') ? 'text-light' : ''}">
                 <img class="icon" th:src="@{img/hall_small_icon.png}"/>
-                <span>Small Hall</span>
+                <span th:text="#{expo.hall.small}"></span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" th:href="@{/search}"
                th:classappend="${#httpServletRequest.getRequestURI().equals('/search') ? 'text-light' : ''}">
                 <img class="icon" th:src="@{img/search_icon.png}"/>
-                <span>Search</span>
+                <span th:text="#{expo.search}"></span>
             </a>
         </li>
     </ul>

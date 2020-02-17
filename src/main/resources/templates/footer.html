@@ -3,17 +3,15 @@
         <div class="logo">
             <a href="/" class="nav-link text-light">
                 <img src="img/center_icon_64.png" width="32" height="32"/>
-                <span>Expo Center</span>
+                <span th:text="#{expo.title}"></span>
             </a>
         </div>
         <div class="copyright">
-            <span class="text-light">
-                © 2019 Developer: Shevchenko Anton
-            </span>
+            <span class="text-light" th:text="'© 2020 ' + #{expo.developer} + ': ' + #{expo.author}"></span>
         </div>
         <a class="github text-light nav-link" href="https://github.com/SCARFACET0NY/expo-center">
             <i class="fa fa-github" style="font-size: 32px;"></i>
-            <span>Github</span>
+            <span th:text="#{expo.github}"></span>
         </a>
     </nav>
 </footer>

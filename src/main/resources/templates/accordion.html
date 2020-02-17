@@ -5,10 +5,18 @@
                 <a class="card-link " data-toggle="collapse" th:href="@{'#collapse' + ${index.index}}">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col" th:text="'Number: ' + ${index.index + 1}"></div>
-                            <div class="col" th:text="'Card Number: ' + ${payment.user.cardNumber}"></div>
-                            <div class="col" th:text="'Date: ' + ${#temporals.format(payment.date, 'yyyy-MM-dd HH:mm:ss')}"></div>
-                            <div class="col" th:text="'Total: ' + ${payment.total}"></div>
+                            <div class="col"
+                                 th:text="#{expo.number} + ': ' + ${index.index + 1}">
+                            </div>
+                            <div class="col"
+                                 th:text="#{expo.register.card.number} + ': ' + ${payment.user.cardNumber}">
+                            </div>
+                            <div class="col"
+                                 th:text="#{expo.ticket.date} + ': ' + ${#temporals.format(payment.date, 'yyyy-MM-dd HH:mm:ss')}">
+                            </div>
+                            <div class="col"
+                                 th:text="#{expo.total} + ': ' + ${payment.total}">
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -16,10 +24,10 @@
             <div th:id="'collapse' + ${index.index}" class="collapse" data-parent="#accordion">
                 <table class="table table-striped">
                     <tr>
-                        <th>title</th>
-                        <th>date</th>
-                        <th>quantity</th>
-                        <th>price</th>
+                        <th th:text="#{expo.exposition.title}"></th>
+                        <th th:text="#{expo.ticket.date}"></th>
+                        <th th:text="#{expo.ticket.quantity}"></th>
+                        <th th:text="#{expo.exposition.price}"></th>
                     </tr>
                     <tr th:each="ticket : ${payment.tickets}">
                         <td th:text="${ticket.exposition.title}"></td>

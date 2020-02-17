@@ -6,7 +6,7 @@
         <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
         <link rel="stylesheet" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}"/>
         <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
-        <title>Expo Center</title>
+        <title th:text="#{expo.title}"></title>
     </head>
 <body>
     <th:block th:include="admin-header.html" />

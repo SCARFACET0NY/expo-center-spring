@@ -11,13 +11,12 @@
         <div class="logo">
             <a href="/" class="nav-link text-light">
                 <img src="img/center_icon_64.png"/>
-                <span>Expo Center</span>
+                <span th:text="#{expo.title}"></span>
             </a>
         </div>
 
-        <a type="button" class="btn btn-light btn-lg" href="/admin/add">Add Exposition</a>
-        <a type="button" class="btn btn-light btn-lg" href="/admin/update">Update Exposition</a>
-        <a type="button" class="btn btn-light btn-lg" href="/admin/statistics">Statistics</a>
-        <a type="button" class="btn btn-light btn-lg" href="/logout">Logout</a>
+        <a type="button" class="btn btn-light btn-lg" href="/admin/add" th:text="#{expo.exposition.add}"></a>
+        <a type="button" class="btn btn-light btn-lg" href="/admin/update" th:text="#{expo.exposition.update}"></a>
+        <a type="button" class="btn btn-light btn-lg" href="/logout" th:text="#{expo.logout}"></a>
     </nav>
 </header>

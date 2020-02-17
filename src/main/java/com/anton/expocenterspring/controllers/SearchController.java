@@ -24,7 +24,7 @@ public class SearchController {
             if (!expositions.isEmpty()) {
                 model.addAttribute("expositions", expositions);
             } else {
-                model.addAttribute("emptySearch", "No Expositions Found");
+                model.addAttribute("emptySearch", "empty");
             }
         }
 

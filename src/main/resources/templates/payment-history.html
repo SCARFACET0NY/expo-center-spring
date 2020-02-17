@@ -8,10 +8,10 @@
 </head>
 <body>
     <div class="container-fluid">
-        <h2>Purchases</h2>
+        <h2 th:text="#{expo.purchases}"></h2>
         <th:block th:include="accordion.html"/>
         <th:block th:include="pagination.html"/>
-        <a class="btn btn-lg btn-dark btn-block home" href="/">Home</a>
+        <a class="btn btn-lg btn-dark btn-block home" href="/" th:text="#{expo.home}"></a>
     </div>
 
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>

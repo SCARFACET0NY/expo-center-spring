@@ -5,16 +5,16 @@
     <link rel="stylesheet" type="text/css" th:href="@{css/normalize.css}"/>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{css/main.css}"/>
-    <title>Expo Center</title>
+    <title th:text="#{expo.login}"></title>
 </head>
 <body>
     <div class="login">
         <div class="container">
-            <h2>Login</h2>
-            <p th:if="${#request.getParameter('error')}" class="red">Invalid credentials</p>
+            <h2 th:text="#{expo.login}"></h2>
+            <p th:if="${#request.getParameter('error')}" class="red" th:text="#{expo.login.invalid}"></p>
             <form th:action="@{/login}" method="post" id="loginForm">
                 <div class="form-group">
-                    <label for="username">Username:</label>
+                    <label for="username" th:text="#{expo.login.username} + ':'"></label>
                     <input type="text" id="username" class="form-control"
                            placeholder="Enter username"
                            required="required"
@@ -22,16 +22,16 @@
                            name="username">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password:</label>
+                    <label for="password" th:text="#{expo.login.password} + ':'"></label>
                     <input type="password" id="password" class="form-control"
                            placeholder="Enter password"
                            required="required"
                            minlength="5"
                            name="password">
                 </div>
-                <button type="submit" id="userLogin" class="btn btn-info btn-block">Login</button>
-                <a th:href="@{/register}" class="btn btn-dark btn-block">Register</a>
-                <a th:href="@{/}" class="btn btn-info btn-block">Home</a>
+                <button type="submit" id="userLogin" class="btn btn-info btn-block" th:text="#{expo.login}"></button>
+                <a th:href="@{/register}" class="btn btn-dark btn-block" th:text="#{expo.register}"></a>
+                <a th:href="@{/}" class="btn btn-info btn-block" th:text="#{expo.home}"></a>
             </form>
         </div>
     </div>

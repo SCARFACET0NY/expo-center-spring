@@ -9,16 +9,16 @@
 </head>
 <body>
     <div class="container-fluid cart">
-        <h2 class="cart-header">Tickets</h2>
+        <h2 class="cart-header" th:text="#{expo.tickets.large}"></h2>
 
         <th:block th:if="${not #maps.isEmpty(session.cart)}">
             <table class="table table-hover">
                 <tr class="bg-info text-dark">
-                    <th>title</th>
-                    <th>date</th>
-                    <th>price</th>
-                    <th>quantity</th>
-                    <th>action</th>
+                    <th th:text="#{expo.exposition.title}"></th>
+                    <th th:text="#{expo.ticket.date}"></th>
+                    <th th:text="#{expo.exposition.price}"></th>
+                    <th th:text="#{expo.ticket.quantity}"></th>
+                    <th th:text="#{expo.cart.action}"></th>
                 </tr>
                 <tr class="bg-dark text-light" th:each="ticket : ${session.cart.values()}">
                     <td th:text="${ticket.exposition.title}"></td>
@@ -28,7 +28,7 @@
                             <input type="date" name="ticket_date" th:value="${ticket.date}"
                                    th:min="${ticket.date}"
                                    th:max="${ticket.exposition.endDate}">
-                            <button type="submit" class="btn btn-info date">set</button>
+                            <button type="submit" class="btn btn-info date" th:text="#{expo.cart.set}"></button>
                         </form>
                     </td>
                     <td id="price" th:text="${ticket.exposition.price}"></td>
@@ -43,19 +43,19 @@
                     <td>
                         <form th:action="@{/removeTicket}" method="post">
                             <input type="hidden" name="exposition_id" th:value="${ticket.exposition.id}">
-                            <button type="submit" class="btn btn-info">remove</button>
+                            <button type="submit" class="btn btn-info" th:text="#{expo.cart.remove}"></button>
                         </form>
                     </td>
                 </tr>
             </table>
-            <p class="total" th:text="'Total: ' + ${session.total}"></p>
+            <p class="total" th:text="#{expo.total} + ': ' + ${session.total}"></p>
 
             <form th:action="@{pay}" method="post">
-                <button type="submit" class="btn btn-lg btn-info btn-block">Pay</button>
+                <button type="submit" class="btn btn-lg btn-info btn-block" th:text="#{expo.cart.pay}"></button>
             </form>
         </th:block>
 
-        <a class="btn btn-lg btn-dark btn-block home" th:href="@{/}">Home</a>
+        <a class="btn btn-lg btn-dark btn-block home" th:href="@{/}" th:text="#{expo.home}"></a>
     </div>
 
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>

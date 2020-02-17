@@ -6,57 +6,56 @@
 </head>
 <body>
     <div class="container">
-        <h2>Choose Exposition</h2>
+        <h2 th:text="#{expo.exposition.update}"></h2>
         <form th:action="@{/admin/choose}" method="get">
             <div class="form-group">
-                <label for="expositions">Choose Exposition:</label>
+                <label for="expositions" th:text="#{expo.exposition.choose} + ':'"></label>
                 <select name="exposition_id" id="expositions" class="form-control">
                     <option th:each="exposition : ${expositions}" th:value="${exposition.id}" th:text="${exposition.title}"
                     th:selected="${chosenExposition != null && exposition.id == chosenExposition.id}">
                     </option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-info btn-block">Choose</button>
+            <button type="submit" class="btn btn-info btn-block" th:text="#{expo.choose}"></button>
         </form>
         <hr/>
 
         <th:block th:if="${chosenExposition != null}">
-            <h2>Update Exposition</h2>
             <form th:action="@{/admin/add}" th:object="${chosenExposition}" method="post">
                 <div class="form-group">
-                    <label for="title">Title:</label>
+                    <label for="title" th:text="#{expo.exposition.title} + ':'"></label>
                     <input type="text" id="title" class="form-control" th:field="*{title}" />
                 </div>
                 <div class="form-group">
-                    <label for="description">Description:</label>
+                    <label for="description" th:text="#{expo.exposition.description} + ':'"></label>
                     <textarea type="text" id="description" class="form-control" th:field="*{description}"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="price">Price:</label>
+                    <label for="price" th:text="#{expo.exposition.price} + ':'"></label>
                     <input type="number" id="price" class="form-control" step="any" th:field="*{price}" />
                 </div>
                 <div class="form-group">
-                    <label for="image_path">Image Path:</label>
+                    <label for="image_path" th:text="#{expo.exposition.image.path} + ':'"></label>
                     <input type="text" id="image_path" class="form-control" th:field="*{imagePath}" />
                 </div>
                 <div class="form-group">
-                    <label for="start_date">Start Date:</label>
+                    <label for="start_date" th:text="#{expo.exposition.date.start} + ':'"></label>
                     <input type="date"  id="start_date" th:field="*{startDate}"/>
                 </div>
                 <div class="form-group">
-                    <label for="end_date">End Date:</label>
+                    <label for="end_date" th:text="#{expo.exposition.date.end} + ':'"></label>
                     <input type="date"  id="end_date" th:field="*{endDate}"/>
                 </div>
                 <div class="form-group">
-                    <label for="halls">Choose Hall:</label>
+                    <label for="halls" th:text="#{expo.hall.choose} + ':'"></label>
                     <select th:field="*{hall}" id="halls" class="form-control">
                         <option th:each="hall : ${halls}" th:value="${hall.id}" th:text="${hall.title}"></option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-info btn-block">Update</button>
+                <button type="submit" class="btn btn-info btn-block" th:text="#{expo.update}"></button>
             </form>
         </th:block>
-        <a class="btn btn-dark btn-block" th:href="@{/admin}">Admin</a>
+        <a class="btn btn-dark btn-block" th:href="@{/admin}" th:text="#{expo.admin}"></a>
     </div>
 </body>
 </html>

@@ -48,6 +48,7 @@ public class AdminController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String addExposition(@ModelAttribute Exposition exposition) {
         expositionService.save(exposition);
+
         return "redirect:/admin";
     }
 
@@ -68,5 +69,13 @@ public class AdminController {
         model.addAttribute("halls", hallService.getAllHalls());
 
         return "update-exposition";
+    }
+
+    @PostMapping("/admin/update")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String updateExposition(@ModelAttribute Exposition exposition) {
+        expositionService.save(exposition);
+
+        return "redirect:/admin";
     }
 }

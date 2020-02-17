@@ -10,11 +10,11 @@ import java.util.Map;
 public interface PaymentService {
     Ticket createTicket(long expositionId);
 
-    Payment createPayment(double total);
+    Payment createPayment(double total, User user);
 
     double getCartTotal(Map<String, Ticket> cart);
 
-    void savePayment(double total, Map<String, Ticket> cart);
+    Payment savePayment(double total, User user, Map<String, Ticket> cart);
 
     Page<Payment> getPaymentsPageForUser(User user, Integer pageNumber);
 }

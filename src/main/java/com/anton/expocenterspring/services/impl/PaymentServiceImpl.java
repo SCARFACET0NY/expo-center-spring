@@ -1,6 +1,5 @@
 package com.anton.expocenterspring.services.impl;
 
-import com.anton.expocenterspring.auth.UserPrincipal;
 import com.anton.expocenterspring.model.Exposition;
 import com.anton.expocenterspring.model.Payment;
 import com.anton.expocenterspring.model.Ticket;
@@ -11,7 +10,6 @@ import com.anton.expocenterspring.repositories.TicketRepository;
 import com.anton.expocenterspring.services.PaymentService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +19,8 @@ import java.util.Map;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
-    private static final int ONE_TICKET = 1;
-    private static final int ROWS_PER_PAGE = 10;
+    public static final int ONE_TICKET = 1;
+    public static final int ROWS_PER_PAGE = 10;
     private final ExpositionRepository expositionRepository;
     private final TicketRepository ticketRepository;
     private final PaymentRepository paymentRepository;
@@ -48,8 +46,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Payment createPayment(double total) {
-        User user = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
+    public Payment createPayment(double total, User user) {
         return Payment.builder().date(LocalDateTime.now()).total(total).user(user).build();
     }
 
@@ -62,12 +59,14 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     @Transactional
-    public void savePayment(double total, Map<String, Ticket> cart) {
-        Payment payment = paymentRepository.save(createPayment(total));
+    public Payment savePayment(double total, User user, Map<String, Ticket> cart) {
+        Payment payment = paymentRepository.save(createPayment(total, user));
         cart.values().forEach(ticket -> {
             ticket.setPayment(payment);
             ticketRepository.save(ticket);
         });
+
+        return payment;
     }
 
     @Override

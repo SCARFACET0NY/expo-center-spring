@@ -2,7 +2,6 @@ package com.anton.expocenterspring.controllers;
 
 import com.anton.expocenterspring.auth.UserPrincipal;
 import com.anton.expocenterspring.model.Exposition;
-import com.anton.expocenterspring.model.Payment;
 import com.anton.expocenterspring.model.Ticket;
 import com.anton.expocenterspring.model.User;
 import com.anton.expocenterspring.services.EmailService;
@@ -108,10 +107,11 @@ public class CartController {
 
     @PostMapping("/pay")
     public String payCart(HttpSession session) {
+        User user = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
         Map<String, Ticket> cart = (Map<String, Ticket>) session.getAttribute("cart");
 
         if (!cart.isEmpty()) {
-            paymentService.savePayment(paymentService.getCartTotal(cart), cart);
+            paymentService.savePayment(paymentService.getCartTotal(cart), user, cart);
 
             return "redirect:sendMail";
         }

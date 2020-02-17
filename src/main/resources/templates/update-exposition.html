@@ -21,7 +21,8 @@
         <hr/>
 
         <th:block th:if="${chosenExposition != null}">
-            <form th:action="@{/admin/add}" th:object="${chosenExposition}" method="post">
+            <form th:action="@{/admin/update}" th:object="${chosenExposition}" method="post">
+                <input type="hidden" th:field="*{id}" />
                 <div class="form-group">
                     <label for="title" th:text="#{expo.exposition.title} + ':'"></label>
                     <input type="text" id="title" class="form-control" th:field="*{title}" />

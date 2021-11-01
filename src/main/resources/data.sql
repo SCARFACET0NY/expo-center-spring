@@ -6,15 +6,15 @@ INSERT INTO `hall` (id, title, area, image_path, `type`) VALUES (1, 'Large Hall'
 (2, 'Medium Hall', 200,' img/hall_medium.jpg', 'MEDIUM'), (3, 'Small Hall', 100, 'img/hall_small.jpg', 'SMALL');
 
 INSERT INTO `exposition` (id, title, description, price, image_path, start_date, end_date, hall_id) VALUES
-(1,'Italian Renaissance','was a period in Italian history that covered the 15th and 16th centuries,',99.99,'img/italian_renaissance.jpg','2020-02-15','2020-02-22',1),
-(2,'Baroque','European paintings from the early 17th century until the 1740s',89.99,'img/baroque.jpg','2020-02-23','2020-03-02',1),
-(3,'Dutch Golden Age','Was a period in the history of the Netherlands, roughly spanning the 17th century',79.99,'img/dutch_golden_age.jpg','2020-03-03','2020-03-10',1),
-(4,'Impressionism','19th-century art movement characterized by relatively small, yet visible brush strokes',69.99,'img/impressionism.jpg','2020-02-16','2020-02-23',2),
-(5,'Post-Impressionism','French art movement that developed roughly between 1886 and 1905',59.99,'img/post_impressionism.jpg','2020-02-24','2020-03-03',2),
-(6,'Neo-Impressionism','Art movement founded by Georges Seurat in 1886 in France',49.99,'img/neo_impressionism.jpg','2020-03-04','2020-03-11',2),
-(7,'Medieval Art','Covers a vast scope of time and place, over 1000 years of art in Europe',39.99,'img/medieval.jpg','2020-02-17','2020-02-24',3),
-(8,'Ancient Roman Art','Refers to the visual arts made in Ancient Rome and in the territories of the Roman Empire',29.99,'img/ancient_rome.jpg','2020-02-25','2020-03-04',3),
-(9,'Ancient Greek Art','Ancient Greek art proper emerged during the 8th century BCE',19.99,'img/ancient_greek.jpg','2020-03-05','2020-03-12',3);
+(1,'Italian Renaissance','was a period in Italian history that covered the 15th and 16th centuries,',99.99,'img/italian_renaissance.jpg','2021-11-15','2021-11-22',1),
+(2,'Baroque','European paintings from the early 17th century until the 1740s',89.99,'img/baroque.jpg','2021-11-23','2021-12-02',1),
+(3,'Dutch Golden Age','Was a period in the history of the Netherlands, roughly spanning the 17th century',79.99,'img/dutch_golden_age.jpg','2021-12-03','2021-12-10',1),
+(4,'Impressionism','19th-century art movement characterized by relatively small, yet visible brush strokes',69.99,'img/impressionism.jpg','2021-11-16','2021-11-23',2),
+(5,'Post-Impressionism','French art movement that developed roughly between 1886 and 1905',59.99,'img/post_impressionism.jpg','2021-11-24','2021-12-03',2),
+(6,'Neo-Impressionism','Art movement founded by Georges Seurat in 1886 in France',49.99,'img/neo_impressionism.jpg','2021-12-04','2021-12-11',2),
+(7,'Medieval Art','Covers a vast scope of time and place, over 1000 years of art in Europe',39.99,'img/medieval.jpg','2021-11-17','2021-11-24',3),
+(8,'Ancient Roman Art','Refers to the visual arts made in Ancient Rome and in the territories of the Roman Empire',29.99,'img/ancient_rome.jpg','2021-11-25','2021-12-04',3),
+(9,'Ancient Greek Art','Ancient Greek art proper emerged during the 8th century BCE',19.99,'img/ancient_greek.jpg','2021-12-05','2021-12-12',3);
 
 INSERT INTO `payment` (id, total, payment_date, user_id) VALUES
 (2,279.95,'2020-01-22 19:14:33',3),
